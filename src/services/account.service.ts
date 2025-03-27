@@ -25,4 +25,10 @@ async function findAccountByEmail(email: string): Promise<Account | null> {
   return account;
 }
 
-export default { createAccount, findAccountByEmail };
+async function findAccountById(id: string): Promise<Account | null> {
+  const account = await prisma.account.findUnique({ where: { id } });
+
+  return account;
+}
+
+export default { createAccount, findAccountByEmail, findAccountById };
