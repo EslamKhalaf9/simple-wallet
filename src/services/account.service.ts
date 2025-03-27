@@ -31,4 +31,19 @@ async function findAccountById(id: string): Promise<Account | null> {
   return account;
 }
 
-export default { createAccount, findAccountByEmail, findAccountById };
+async function getBalance(id: string): Promise<number> {
+  const account = await findAccountById(id);
+
+  if (!account) {
+    throw new AppError(404, 'Account not found');
+  }
+
+  return account.balance;
+}
+
+export default {
+  createAccount,
+  findAccountByEmail,
+  findAccountById,
+  getBalance,
+};
