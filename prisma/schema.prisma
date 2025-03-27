@@ -20,6 +20,7 @@ model Account {
   address         String
   job             String   @default("")
   password        String
+  balance         Int      @default(0) // balance in cents
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
