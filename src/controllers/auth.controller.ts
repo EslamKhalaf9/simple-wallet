@@ -16,7 +16,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
 
 async function me(req: RequestWithAccount, res: Response, next: NextFunction) {
   try {
-    if (!true) {
+    if (!req.account) {
       throw new AppError(401, 'Unauthenticated');
     }
     res.status(200).send(req.account);
