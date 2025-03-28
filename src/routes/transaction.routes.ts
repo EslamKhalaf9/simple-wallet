@@ -8,6 +8,42 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /transaction:
+ *   get:
+ *     summary: Get transactions
+ *     tags:
+ *       - Transaction
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Number of items per page
+ *     responses:
+ *       200:
+ *         description: List of transactions
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Transaction'
+ *       401:
+ *         description: Unauthenticated
+ */
+router.get('/', isAuthenticated, transactionController.getTransactions);
+
+/**
+ * @swagger
  * /transaction/deposit:
  *   post:
  *     summary: Withdraw amount from account balance in cents

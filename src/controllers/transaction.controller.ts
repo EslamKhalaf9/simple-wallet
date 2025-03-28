@@ -6,6 +6,28 @@ import transactionService from '../services/transaction.service';
 import { CreateTransactionDto } from '../dtos/create-transaction.dto';
 import prisma from '../db/prisma';
 
+async function getTransactions(
+  req: RequestWithAccount,
+  res: Response,
+  next: NextFunction
+) {
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 10;
+  try {
+    if (!req.account || !req.account.id)
+      throw new AppError(401, 'Not authorized');
+
+    const transactions = await transactionService.getTransactions(
+      req.account.id,
+      page,
+      limit
+    );
+    res.status(200).send(transactions);
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function withdraw(
   req: RequestWithAccount,
   res: Response,
@@ -57,6 +79,7 @@ async function deposit(
 }
 
 export default {
+  getTransactions,
   withdraw,
   deposit,
 };

@@ -97,14 +97,15 @@ This will start the PostgreSQL database and the Express API.
 
 ## 🧪 API Endpoints
 
-| Method | Endpoint                 | Description         |
-| ------ | ------------------------ | ------------------- |
-| POST   | `/auth/login`            | Login               |
-| GET    | `/auth/me`               | Get current user    |
-| POST   | `/account`               | Create new account  |
-| GET    | `/account/balance`       | Get account balance |
-| POST   | `/transactions/deposit`  | Deposit funds       |
-| POST   | `/transactions/withdraw` | Withdraw funds      |
+| Method | Endpoint                 | Description                  |
+| ------ | ------------------------ | ---------------------------- |
+| POST   | `/auth/login`            | Login                        |
+| GET    | `/auth/me`               | Get current user             |
+| POST   | `/account`               | Create new account           |
+| GET    | `/account/balance`       | Get account balance          |
+| GET    | `/transactions`          | Get all transactions history |
+| POST   | `/transactions/deposit`  | Deposit funds                |
+| POST   | `/transactions/withdraw` | Withdraw funds               |
 
 > All endpoints accept and return JSON. Input is validated using `zod`.
 
@@ -158,15 +159,6 @@ npm run test
 
 - No Authorization is implemented.
 - No users table, I assume that accounts are the actual users, so one account per user.
-
----
-
-## 📌 To Improve
-
-- Add Swagger/OpenAPI documentation
-- Add rate limiting
-- Add full test coverage
-- Add account transaction history with pagination
 
 ---
 

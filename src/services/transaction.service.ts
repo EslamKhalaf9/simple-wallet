@@ -1,5 +1,15 @@
 import prisma from '../db/prisma';
 
+async function getTransactions(accountId: string, page: number, limit: number) {
+  const transactions = await prisma.transaction.findMany({
+    where: { accountId },
+    skip: (page - 1) * limit,
+    take: limit,
+    orderBy: { createdAt: 'desc' },
+  });
+  return transactions;
+}
+
 async function createTransaction(
   accountId: string,
   amount: number,
@@ -13,5 +23,6 @@ async function createTransaction(
 }
 
 export default {
+  getTransactions,
   createTransaction,
 };
