@@ -9,18 +9,36 @@ datasource db {
 }
 
 model Account {
-  id              String   @id @default(cuid())
+  id              String        @id @default(cuid())
   firstname       String
   lastname        String
-  email           String   @unique
+  email           String        @unique
   nid             String
   nid_expire_date String
   government      String
   city            String
   address         String
-  job             String   @default("")
+  job             String        @default("")
   password        String
-  balance         Int      @default(0) // balance in cents
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  balance         Int           @default(0) // balance in cents
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  Transaction     Transaction[]
+}
+
+model Transaction {
+  id        String          @id @default(cuid())
+  account   Account         @relation(fields: [accountId], references: [id])
+  accountId String
+  amount    Int
+  type      TransactionType
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@map("transactions")
+}
+
+enum TransactionType {
+  deposit
+  withdraw
 }
