@@ -11,24 +11,22 @@ export async function isAuthenticated(
 ) {
   const [type, token] = req.headers.authorization?.split(' ') || [];
 
-  if (type !== 'Bearer' || !token) throw new Error();
-
   try {
+    if (type !== 'Bearer' || !token) throw new Error('Unauthenticated');
     const payload = jwt.verify(token, process.env.JWT_SECRET as string);
 
     if (!payload) {
-      throw new Error();
+      throw new Error('Unauthenticated');
     }
 
     const { id } = payload as { id: string };
-    console.log(id);
     const account = await accountService.findAccountById(id);
 
     if (!account) throw new Error();
     req.account = serializeAccount(account);
     next();
   } catch (error) {
-    res.status(401).send('Unauthorized');
+    res.status(401).send('Unauthenticated');
     return;
   }
 }

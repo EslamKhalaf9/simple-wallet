@@ -41,9 +41,42 @@ async function getBalance(id: string): Promise<number> {
   return account.balance;
 }
 
+async function withdraw(accountId: string, amount: number): Promise<void> {
+  const account = await findAccountById(accountId);
+
+  if (!account) {
+    throw new AppError(404, 'Account not found');
+  }
+
+  if (account.balance < amount) {
+    throw new AppError(400, 'Insufficient balance');
+  }
+
+  await prisma.account.update({
+    where: { id: accountId },
+    data: { balance: account.balance - amount },
+  });
+}
+
+async function deposit(accountId: string, amount: number): Promise<void> {
+  const account = await findAccountById(accountId);
+  console.log(amount);
+
+  if (!account) {
+    throw new AppError(404, 'Account not found');
+  }
+
+  await prisma.account.update({
+    where: { id: accountId },
+    data: { balance: account.balance + amount },
+  });
+}
+
 export default {
   createAccount,
   findAccountByEmail,
   findAccountById,
   getBalance,
+  withdraw,
+  deposit,
 };
