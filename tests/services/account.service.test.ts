@@ -195,6 +195,10 @@ describe('accountService', () => {
       await expect(accountService.withdraw('123', 1000)).rejects.toThrow(
         'Insufficient balance'
       );
+
+      await expect(accountService.withdraw('123', 501)).rejects.toThrow(
+        'Insufficient balance'
+      );
     });
   });
 });
