@@ -5,7 +5,7 @@ import { CreateAccountDto } from '../dtos/create-account.dto';
 import { serializeAccount } from '../serializers/account.serializer';
 import RequestWithAccount from '../types/express/request';
 import AppError from '../interfaces/app-error.interface';
-import { formatCents } from '../utlis/format-cents';
+import { formatCents } from '../utils/format-cents';
 
 async function createAccount(req: Request, res: Response, next: NextFunction) {
   const body = req.body as CreateAccountDto;

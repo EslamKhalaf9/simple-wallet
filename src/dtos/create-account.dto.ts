@@ -1,4 +1,3 @@
-// src/dto/createAccount.dto.ts
 import { z } from 'zod';
 
 export const createAccountSchema = z.object({
