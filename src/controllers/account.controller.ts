@@ -5,6 +5,7 @@ import { CreateAccountDto } from '../dtos/create-account.dto';
 import { serializeAccount } from '../serializers/account.serializer';
 import RequestWithAccount from '../types/express/request';
 import AppError from '../interfaces/app-error.interface';
+import { formatCents } from '../utlis/format-cents';
 
 async function createAccount(req: Request, res: Response, next: NextFunction) {
   const body = req.body as CreateAccountDto;
@@ -25,7 +26,7 @@ async function getBalance(
   try {
     if (!account || !account.id) throw new AppError(401, 'Unauthenticated');
     const balance = await accountService.getBalance(account.id);
-    res.status(200).send({ balance });
+    res.status(200).send({ balance: formatCents(balance) });
   } catch (error) {
     next(error);
   }
