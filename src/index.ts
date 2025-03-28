@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import routes from './routes';
 import errorHandler from './middlewares/errorhandler.middleware';
 import swaggerDocs from './utils/swagger/swagger';
+import notFound from './middlewares/404.middleware';
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use(routes);
+
+app.use(notFound);
 
 app.use(errorHandler);
 
