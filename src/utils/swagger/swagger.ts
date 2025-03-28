@@ -5,10 +5,7 @@ import swaggerDefinition from './swaggerDef';
 
 const options = {
   swaggerDefinition,
-  apis:
-    process.env.NODE_ENV === 'development'
-      ? ['src/routes/*.ts']
-      : ['dist/routes/*.js'],
+  apis: ['src/routes/**/*.ts', 'dist/routes/**/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

@@ -19,6 +19,8 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
+swaggerDocs(app, port);
+
 app.use(routes);
 
 app.use(notFound);
@@ -27,5 +29,4 @@ app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
-  swaggerDocs(app, port);
 });
