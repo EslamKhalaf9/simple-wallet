@@ -110,11 +110,19 @@ This will start the PostgreSQL database and the Express API.
 
 ---
 
-## 📖 API Documentation
+## 📖 API Documentation (Swagger)
 
 After running the app, you can access the Swagger UI:
 
 [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+
+### Postman Collection
+
+[Invitation Link](https://app.getpostman.com/join-team?invite_code=37ce13b2972d6d27869b0a73dcb6bf6c5851ef8698209b910343b66800fd4fa5&target_code=8853481f9f5dadc1b)
+
+or use the provided [Postman Collection](https://drive.google.com/file/d/1BfFc1A3DvqynCvICPF_67qLr8zwkbUBB/view?usp=sharing)
+
+---
 
 ## ✅ Acceptance Criteria
 
