@@ -60,7 +60,6 @@ async function withdraw(accountId: string, amount: number): Promise<void> {
 
 async function deposit(accountId: string, amount: number): Promise<void> {
   const account = await findAccountById(accountId);
-  console.log(amount);
 
   if (!account) {
     throw new AppError(404, 'Account not found');
