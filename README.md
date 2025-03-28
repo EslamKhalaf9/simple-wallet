@@ -72,6 +72,12 @@ This will start the PostgreSQL database and the Express API.
 
 ---
 
+## 📖 API Documentation
+
+After running the app, you can access the Swagger UI:
+
+[http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+
 ## ✅ Acceptance Criteria
 
 - [x] Opening an account returns a valid Account ID.
