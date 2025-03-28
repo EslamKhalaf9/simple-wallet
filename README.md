@@ -28,6 +28,44 @@ Built using **Express**, **Prisma**, and **PostgreSQL**, and containerized with 
 
 ---
 
+### 📁 Project Folder Structure
+
+```txt
+simple-wallet/
+├── src/
+│   ├── controllers/        # Request handlers for each route
+│   ├── db/                 # Prisma client instance
+│   ├── dtos/               # Zod DTOs for request validation
+│   ├── interfaces/         # Shared interfaces (e.g., custom error types)
+│   ├── middlewares/        # Express middlewares (auth, error handling, etc.)
+│   ├── routes/             # API routes
+│   ├── serializers/        # Serializer for response data
+│   ├── services/           # Business logic and interaction with Prisma
+│   ├── types/              # Custom TS types
+│   ├── utils/              # utility helpers and swagger config
+│   └── index.ts            # App entry point
+│
+├── tests/                  # Unit tests for services
+│
+├── prisma/                 # Prisma schema and migrations
+│   └── schema.prisma
+│
+├── .env.example            # Environment variable template
+├── Dockerfile              # API Docker setup
+├── docker-compose.yml      # Services: API, PostgreSQL, pgAdmin
+├── README.md               # Project overview and instructions
+├── tsconfig.json           # TypeScript config
+├── jest.config.js          # Jest + ts-jest setup
+```
+
+---
+
+## Prisma Schema Diagram
+
+![alt text](image.png)
+
+---
+
 ## 📦 Getting Started
 
 ### 1. Clone the Repository
@@ -87,9 +125,9 @@ After running the app, you can access the Swagger UI:
 
 ---
 
-## 🧪 Testing (To Be Added)
+## 🧪 Testing
 
-> Unit and integration tests will be included using `Jest`.
+> Unit tests are included using [Jest](https://jestjs.io/).
 
 To run tests:
 
