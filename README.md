@@ -83,7 +83,7 @@ This will start the PostgreSQL database and the Express API.
 
 ## 🧪 Testing (To Be Added)
 
-> Unit and integration tests will be included using `Jest` and `Supertest`.
+> Unit and integration tests will be included using `Jest`.
 
 To run tests:
 
