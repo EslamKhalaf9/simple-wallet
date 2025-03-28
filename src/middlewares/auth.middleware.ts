@@ -12,11 +12,11 @@ export async function isAuthenticated(
   const [type, token] = req.headers.authorization?.split(' ') || [];
 
   try {
-    if (type !== 'Bearer' || !token) throw new Error('Unauthenticated');
+    if (type !== 'Bearer' || !token) throw new Error('Not authorized');
     const payload = jwt.verify(token, process.env.JWT_SECRET as string);
 
     if (!payload) {
-      throw new Error('Unauthenticated');
+      throw new Error('Not authorized');
     }
 
     const { id } = payload as { id: string };
@@ -26,7 +26,7 @@ export async function isAuthenticated(
     req.account = serializeAccount(account);
     next();
   } catch (error) {
-    res.status(401).send('Unauthenticated');
+    res.status(401).send('Not authorized');
     return;
   }
 }

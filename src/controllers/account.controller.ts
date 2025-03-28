@@ -24,7 +24,7 @@ async function getBalance(
 ) {
   const account = req.account;
   try {
-    if (!account || !account.id) throw new AppError(401, 'Unauthenticated');
+    if (!account || !account.id) throw new AppError(401, 'Not authorized');
     const balance = await accountService.getBalance(account.id);
     res.status(200).send({ balance: formatCents(balance) });
   } catch (error) {

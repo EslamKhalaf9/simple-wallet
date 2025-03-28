@@ -36,7 +36,7 @@ describe('authService', () => {
       (accountService.findAccountByEmail as jest.Mock).mockResolvedValue(null);
 
       await expect(authService.login({ email, password })).rejects.toThrow(
-        'Unauthenticated'
+        'Invalid Credentials'
       );
     });
 
@@ -50,7 +50,7 @@ describe('authService', () => {
       (bcrypt.compare as jest.Mock).mockResolvedValue(false);
 
       await expect(authService.login({ email, password })).rejects.toThrow(
-        'Unauthenticated'
+        'Invalid Credentials'
       );
     });
   });
